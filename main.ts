@@ -2,6 +2,8 @@ import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
+const { ipcMain } = require('electron');
+
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
     serve = args.some(val => val === '--serve');
@@ -79,3 +81,9 @@ try {
   // Catch Error
   // throw e;
 }
+
+ipcMain.on('openDialog', () => {
+  console.log("comms to main reload") // prints "ping"
+})
+
+
