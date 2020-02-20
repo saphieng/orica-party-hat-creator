@@ -1,44 +1,44 @@
-.navbar {
-  background: linear-gradient(40deg, rgba(0,51,199,.3), rgba(209,149,249,.3));
+/* Required for full background image */
+
+html,
+body,
+header,
+.view {
+  min-height: 100vh !important;
 }
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 100vh;
+  }
+}
+
+.top-nav-collapse {
+  background-color: #78909c !important;
+}
+
 .navbar:not(.top-nav-collapse) {
-  background: transparent;
+  background: transparent !important;
 }
-.navbar .navbar-brand img {
-  height: 40px;
-  margin: 10px;
+
+@media (max-width: 991px) {
+  .navbar:not(.top-nav-collapse) {
+    background: #78909c !important;
+  }
 }
-.hm-gradient {
-  background: linear-gradient(40deg, rgba(0,51,199,.3), rgba(209,149,249,.3));
+
+h1 {
+  letter-spacing: 8px;
 }
-.heading {
-  margin: 0 6rem;
-  font-weight: 700;
-  color: #5d4267;
+
+h5 {
+  letter-spacing: 3px;
 }
-.subheading {
-  margin: 2.5rem 6rem;
-  color: #bcb2c0;
-}
-.btn.btn-margin {
-  margin-left: 6rem;
-  margin-top: 3rem;
-}
-.btn.btn-lily {
-  background: linear-gradient(40deg, rgba(0,51,199,.7), rgba(209,149,249,.7));
-}
-.title {
-  margin-top: 6rem;
-  margin-bottom: 2rem;
-  color: #5d4267;
-}
-.subtitle {
-  color: #bcb2c0;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-bottom: 6rem;
-}
-.dropdown-menu {
-  left: unset !important;
-  right: 0 ;
+
+.hr-light {
+  border-top: 3px solid #fff;
+  width: 80px;
 }

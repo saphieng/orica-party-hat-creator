@@ -1,6 +1,7 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+const { exec } = require("child_process");
 
 const { ipcMain } = require('electron');
 
@@ -82,8 +83,21 @@ try {
   // throw e;
 }
 
+
 ipcMain.on('openDialog', () => {
-  console.log("comms to main reload") // prints "ping"
+  exec(`diskpart /s ${path.join(__dirname, 'diskpart-scripts/list-disks.txt')}`, (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
 })
+
+
 
 
