@@ -1,16 +1,10 @@
-const { exec } = require("child_process");
-const path = require('path')
-console.log(path.join(__dirname, 'diskpart-scripts/list-disks.txt'));
+const drivelist = require('drivelist');
 
+getDrives();
 
-exec(`wmic logicaldisk get deviceid, volumename, description`, (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`${stdout}`);
-  });
+async function getDrives () {
+    const drives = await drivelist.list();
+    drives.forEach((drive) => {
+        console.log(drive);
+      });
+}

@@ -22,3 +22,16 @@ You can disable "Developer Tools" by commenting `win.webContents.openDevTools();
 |`npm run electron:linux`| Builds your application and creates an app consumable on linux system |
 |`npm run electron:windows`| On a Windows OS, builds your application and creates an app consumable in windows 32/64 bit systems |
 |`npm run electron:mac`|  On a MAC OS, builds your application and generates a `.app` file of your application that can be run on Mac |
+
+## DiskPart Commands
+These are the steps in the dikpart sequence that will setup up the drive with the right partitions:
+1. `select disk n` where n is the disk number of the target media
+2. `clean`
+3. `create partition primary size=1000` creates the Acronis side with 1000mb size
+4. `create partition primary` creates the second parition for the image and it will consume the rest of the disk
+5. `select partition 1`
+6. `format fs=fat32 label=Acronis`
+7. `select partition 2`
+8. `format fs=ntfs quick label=IMAGES`
+9. `exit`
+
