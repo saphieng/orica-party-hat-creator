@@ -1,9 +1,8 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-const { exec } = require("child_process");
-
-const { ipcMain } = require('electron');
+import {Comms} from './functions/comms/comms-main'
+let comms = new Comms;
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
@@ -12,12 +11,13 @@ const args = process.argv.slice(1),
 function createWindow(): BrowserWindow {
 
   const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  //const size = electronScreen.getPrimaryDisplay().workAreaSize; //This is if we want to go full screen
+  const size = {width: 800, height: 600};   //Desktop app size recommended by luke
 
   // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
+/*     x: 0,
+    y: 0, */
     width: size.width,
     height: size.height,
     webPreferences: {
@@ -84,19 +84,6 @@ try {
 }
 
 
-ipcMain.on('openDialog', () => {
-  exec(`diskpart /s ${path.join(__dirname, 'diskpart-scripts/list-disks.txt')}`, (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-  });
-})
 
 
 
