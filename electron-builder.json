@@ -23,7 +23,8 @@
     "icon": "dist",
     "target": [
       "portable"
-    ]
+    ],
+    "requestedExecutionLevel": "highestAvailable"
   },
   "mac": {
     "icon": "dist",
