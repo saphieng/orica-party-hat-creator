@@ -29,7 +29,13 @@ export class ElectronService {
 
       this.childProcess = window.require('child_process');
       this.fs = window.require('fs');
-      this.ipcRenderer.send("openDialog");
+      //Setup Function to read renderer messages
+      ipcRenderer.on('echo', (event, arg) => {
+        console.log(arg) // prints printes the string sent in echo test
+      })
+
+      //Send a message to the main
+      this.ipcRenderer.send("echo",["echo test"]);
     }
   }
 }
